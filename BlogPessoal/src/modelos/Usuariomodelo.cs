@@ -12,17 +12,14 @@ namespace BlogPessoal.src.modelos
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required,StringLength(50)]
         public string Nome { get; set; }
 
-        [Required]
-        [StringLength(30)]
+        [Required, StringLength(30)]
      
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(30)]
+        [Required, StringLength(30)]
         public string Senha { get; set; }
 
         public string Foto { get; set; }
