@@ -15,7 +15,8 @@ namespace BlogPessoal.src.repositorios
         void NovoTema(NovoTemaDTO Usuario);
         void AtualizarTema(AtualizarTemaDTO usuario);
         void DeletarTema(int id);
-        Temamodelo PegarTemaPeloId(int id);
-        List<Temamodelo> PegarTemaPelaDescricao(string descricao);
+        TemaModelo PegarTemaPeloId(int id);
+        List<TemaModelo> PegarTodosTemas();
+        List<TemaModelo> PegarTemaPelaDescricao(string descricao);
     }
 }

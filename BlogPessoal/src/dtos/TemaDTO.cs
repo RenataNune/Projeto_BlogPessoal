@@ -26,10 +26,15 @@ namespace BlogPessoal.src.dtos
     /// <para>Data: 29/04/2022</para>
     /// </summary>
     public class AtualizarTemaDTO
-    {
+    { 
+        [Required]
+
+        public int Id { get; set; }
+
         [Required, StringLength(20)]
         public string Descricao { get; set; }
-        public AtualizarTemaDTO(string descricao)
+        public AtualizarTemaDTO(int v, string descricao)
+     
         {
             Descricao = descricao;
         }

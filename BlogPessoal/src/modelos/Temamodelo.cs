@@ -6,12 +6,12 @@ using System.Text.Json.Serialization;
 namespace BlogPessoal.src.modelos
 {
     [Table("tb_temas")]
-    public class Temamodelo
+    public class TemaModelo
     {
       [Key]  
       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-      public int Id { get; set; }
+        public int Id { get; set; }
          
         [Required, StringLength(20)]
         public string Descricao { get; set; }

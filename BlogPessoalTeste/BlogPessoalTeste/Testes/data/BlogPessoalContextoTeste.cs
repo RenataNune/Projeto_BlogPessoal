@@ -26,7 +26,7 @@ namespace BlogPessoalTeste.Testes.data
         {
             Usuariomodelo usuario = new Usuariomodelo();
 
-            usuario.Nome = "Renata nuens";
+            usuario.Nome = "Renata nunes";
             usuario.Email = "renatan.sil97@gmail.com";
             usuario.Senha = "123456";
             usuario.Foto = "aquitaolinkdafoto";

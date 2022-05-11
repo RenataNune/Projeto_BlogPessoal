@@ -10,6 +10,9 @@ namespace BlogPessoal.src.dtos
     /// </summary>
     public class NovaPostagemDTO
     {
+        [Required]
+        public int Id { get; set; }
+
         [Required, StringLength(30)]
         public string Titulo { get; set; }
 
@@ -41,6 +44,9 @@ namespace BlogPessoal.src.dtos
     /// </summary>
     public class AtualizarPostagemDTO
     {
+        [Required, StringLength(30)]
+        public int Id { get; set; }
+
         [Required, StringLength(30)]
         public string Titulo { get; set; }
 
