@@ -1,10 +1,15 @@
-﻿using System.Linq;
-using BlogPessoal.src.data;
+﻿using BlogPessoal.src.data;
 using BlogPessoal.src.dtos;
 using BlogPessoal.src.repositorios;
 using BlogPessoal.src.repositorios.implementacoes;
+using BlogPessoal.src.utilidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BlogPessoalTeste.Testes.repositorios
 {
@@ -16,12 +21,13 @@ namespace BlogPessoalTeste.Testes.repositorios
         private ITema _repositorioT;
         private IPostagem _repositorioP;
 
+
         [TestMethod]
-        public void CriaTresPostagensNoSistemaRetornaTres()
+        public void CriaTresPostagemNoSistemaRetornaTres()
         {
             // Definindo o contexto
             var opt = new DbContextOptionsBuilder<BlogPessoalContexto>()
-                 .UseInMemoryDatabase(databaseName: "db_blogpessoal20")
+                 .UseInMemoryDatabase(databaseName: "db_blogpessoal21")
                  .Options;
 
             _contexto = new BlogPessoalContexto(opt);
@@ -32,57 +38,59 @@ namespace BlogPessoalTeste.Testes.repositorios
             // GIVEN - Dado que registro 2 usuarios
             _repositorioU.NovoUsuario(
                 new NovoUsuarioDTO
-                ("Kauane Farias", "kau@email.com", "134652", "URLDAFOTO")
+                ("Gustavo Boaz", "gustavo@email.com", "134652", "URLDAFOTO", TipoUsuario.NORMAL)
             );
 
             _repositorioU.NovoUsuario(
                 new NovoUsuarioDTO
-                ("Guilherme Reluz", "julio@email.com", "134652", "URLDAFOTO")
+                ("Catarina Boaz", "catarina@email.com", "134652", "URLDAFOTO", TipoUsuario.NORMAL)
             );
 
             // AND - E que registro 2 temas
             _repositorioT.NovoTema(new NovoTemaDTO("C#"));
             _repositorioT.NovoTema(new NovoTemaDTO("Java"));
 
-            // WHEN - Quando registro 3 postagens no sistema
+            // WHEN - Quando registro 3 postagens
             _repositorioP.NovaPostagem(
-            new NovaPostagemDTO(
-            "C# é muito massa",
-            "É uma linguagem muito utilizada no mundo",
-            "URLDAFOTO",
-            "kau@email.com",
-            "C#"
-            )
+                new NovaPostagemDTO(
+                    "C# é muito massa",
+                    "É uma linguagem muito utilizada no mundo",
+                    "URLDAFOTO",
+                    "gustavo@email.com",
+                    "C#"
+                )
             );
             _repositorioP.NovaPostagem(
-            new NovaPostagemDTO(
-            "C# pode ser usado com Testes",
-            "O teste unitário é importante para o desenvolvimento",
-            "URLDAFOTO",
-            "julio@email.com",
-            "C#"
-            )
+                new NovaPostagemDTO(
+                    "C# pode ser usado com Testes",
+                    "O teste unitário é importante para o desenvolvimento",
+                    "URLDAFOTO",
+                    "catarina@email.com",
+                    "C#"
+                )
             );
             _repositorioP.NovaPostagem(
-            new NovaPostagemDTO(
-            "Java é muito massa",
-            "Java também é muito utilizada no mundo",
-            "URLDAFOTO",
-            "kau@email.com",
-            "Java"
-            )
+                new NovaPostagemDTO(
+                    "Java é muito massa",
+                    "Java também é muito utilizada no mundo",
+                    "URLDAFOTO",
+                    "gustavo@email.com",
+                    "Java"
+                )
             );
 
             // WHEN - Quando eu busco todas as postagens
             // THEN - Eu tenho 3 postagens
             Assert.AreEqual(3, _repositorioP.PegarTodasPostagens().Count());
         }
+
+
         [TestMethod]
         public void AtualizarPostagemRetornaPostagemAtualizada()
         {
             // Definindo o contexto
             var opt = new DbContextOptionsBuilder<BlogPessoalContexto>()
-                .UseInMemoryDatabase(databaseName: "db_blogpessoal21")
+                .UseInMemoryDatabase(databaseName: "db_blogpessoal22")
                 .Options;
 
             _contexto = new BlogPessoalContexto(opt);
@@ -90,10 +98,10 @@ namespace BlogPessoalTeste.Testes.repositorios
             _repositorioT = new TemaRepositorio(_contexto);
             _repositorioP = new PostagemRepositorio(_contexto);
 
-            // GIVEN - Dado que registro 1 usuario
+            // GIVEN - Dado que registro 1 usuarios
             _repositorioU.NovoUsuario(
                 new NovoUsuarioDTO
-                ("Kauane Farias", "kau@email.com", "134652", "URLDAFOTO")
+                ("Gustavo Boaz", "gustavo@email.com", "134652", "URLDAFOTO", TipoUsuario.NORMAL)
             );
 
             // AND - E que registro 1 tema
@@ -106,7 +114,7 @@ namespace BlogPessoalTeste.Testes.repositorios
                     "COBOL é muito massa",
                     "É uma linguagem muito utilizada no mundo",
                     "URLDAFOTO",
-                    "kau@email.com",
+                    "gustavo@email.com",
                     "COBOL"
                 )
             );
@@ -140,12 +148,14 @@ namespace BlogPessoalTeste.Testes.repositorios
                 _repositorioP.PegarPostagemPeloId(1).Tema.Descricao
             );
         }
+
+
         [TestMethod]
-        public void PegarPostagensPorPesquisaRetornarCustomizada()
+        public void PegarPostagensPorPesquisaRetodarCustomizada()
         {
             // Definindo o contexto
             var opt = new DbContextOptionsBuilder<BlogPessoalContexto>()
-                .UseInMemoryDatabase(databaseName: "db_blogpessoal22")
+                .UseInMemoryDatabase(databaseName: "db_blogpessoal23")
                 .Options;
 
             _contexto = new BlogPessoalContexto(opt);
@@ -156,12 +166,12 @@ namespace BlogPessoalTeste.Testes.repositorios
             // GIVEN - Dado que registro 2 usuarios
             _repositorioU.NovoUsuario(
                 new NovoUsuarioDTO
-                ("Kauane Farias", "kau@email.com", "134652", "URLDAFOTO")
+                ("Gustavo Boaz", "gustavo@email.com", "134652", "URLDAFOTO", TipoUsuario.NORMAL)
             );
 
             _repositorioU.NovoUsuario(
                 new NovoUsuarioDTO
-                ("Gustavo Gama", "catel@email.com", "134652", "URLDAFOTO")
+                ("Catarina Boaz", "catarina@email.com", "134652", "URLDAFOTO", TipoUsuario.NORMAL)
             );
 
             // AND - E que registro 2 temas
@@ -174,7 +184,7 @@ namespace BlogPessoalTeste.Testes.repositorios
                     "C# é muito massa",
                     "É uma linguagem muito utilizada no mundo",
                     "URLDAFOTO",
-                    "kau@email.com",
+                    "gustavo@email.com",
                     "C#"
                 )
             );
@@ -183,7 +193,7 @@ namespace BlogPessoalTeste.Testes.repositorios
                     "C# pode ser usado com Testes",
                     "O teste unitário é importante para o desenvolvimento",
                     "URLDAFOTO",
-                    "catel@email.com",
+                    "catarina@email.com",
                     "C#"
                 )
             );
@@ -192,12 +202,12 @@ namespace BlogPessoalTeste.Testes.repositorios
                     "Java é muito massa",
                     "Java também é muito utilizada no mundo",
                     "URLDAFOTO",
-                    "kau@email.com",
+                    "gustavo@email.com",
                     "Java"
                 )
             );
 
-            // WHEN - Quando eu busco as postagens
+            // WHEN - Quando eu busco as postagen
             // THEN - Eu tenho as postagens que correspondem aos criterios
             Assert.AreEqual(
                 2,
@@ -209,7 +219,7 @@ namespace BlogPessoalTeste.Testes.repositorios
             );
             Assert.AreEqual(
                 2,
-                _repositorioP.PegarPostagensPorPesquisa(null, null, "Ka").Count
+                _repositorioP.PegarPostagensPorPesquisa(null, null, "Gu").Count
             );
         }
     }

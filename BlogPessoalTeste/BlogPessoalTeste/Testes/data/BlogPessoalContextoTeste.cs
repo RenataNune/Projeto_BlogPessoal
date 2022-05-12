@@ -24,7 +24,7 @@ namespace BlogPessoalTeste.Testes.data
         [TestMethod]
         public void InserirNovoUsuarioNoBancoRetornaUsuario()
         {
-            Usuariomodelo usuario = new Usuariomodelo();
+            UsuarioModelo usuario = new UsuarioModelo();
 
             usuario.Nome = "Renata nunes";
             usuario.Email = "renatan.sil97@gmail.com";

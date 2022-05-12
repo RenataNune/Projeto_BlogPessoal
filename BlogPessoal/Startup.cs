@@ -53,6 +53,27 @@ namespace BlogPessoal
             services.AddCors();
             services.AddControllers();
 
+            public void ConfigureServices(IServiceCollection services)
+            {
+                // Contexto
+                IConfigurationRoot config = new ConfigurationBuilder()
+                            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                            .AddJsonFile("appsettings.json")
+                            .Build();
+                services.AddDbContext<BlogPessoalContexto>(
+                     opt => opt.
+                    UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
+                // Repositorios
+                services.AddScoped<IUsuario, UsuarioRepositorio>();
+                services.AddScoped<ITema, TemaRepositorio>();
+                services.AddScoped<IPostagem, PostagemRepositorio>();
+                
+                // Controladores
+                services.AddCors();
+                services.AddControllers();
+            }
+
             // Configuração de Serviços
             services.AddScoped<IAutenticacao, AutenticacaoServicos>();
 
@@ -96,9 +117,27 @@ namespace BlogPessoal
             app.UseCors(c => c
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
-                .AllowAnyHeader()
-            );
+                .AllowAnyHeader());
+            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
+            // Ambiente de produção
+            // Rotas
+            app.UseRouting();
+           
+            app.UseCors(c => c
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+           
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            
             // Autenticação e Autorização
             app.UseAuthentication();
             app.UseAuthorization();

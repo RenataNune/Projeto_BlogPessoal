@@ -1,6 +1,7 @@
 ﻿using BlogPessoal.src.dtos;
 using BlogPessoal.src.repositorios;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BlogPessoal.src.controladores
 {
@@ -27,9 +28,9 @@ namespace BlogPessoal.src.controladores
         #region Metodos
 
         [HttpGet("id/{idPostagem")]
-        public IActionResult PegarPostagemPeloId([FromRoute] int idPostagem)
+        public async Task<ActionResult> PegarPostagemPeloIdAsync([FromRoute] int idPostagem)
         {
-            var postagem = _repositorio.PegarPostagemPeloId(idPostagem);
+            var postagem = await _repositorio.PegarPostagemPeloIdAsync(idPostagem);
 
             if (postagem == null) return NotFound();
 
@@ -39,12 +40,12 @@ namespace BlogPessoal.src.controladores
        
 
         [HttpGet("pesquisa")]
-        public IActionResult PegarPostagensPorPesquisa(
+        public async Task<ActionResult> PegarPostagensPorPesquisaAsync(
             [FromQuery] string titulo,
             [FromQuery] string descricaoTema,
             [FromQuery] string nomeCriador)
         {
-            var postagens = _repositorio.PegarPostagensPorPesquisa(titulo, descricaoTema, nomeCriador);
+            var postagens = await _repositorio.PegarPostagensPorPesquisaAsync(titulo, descricaoTema, nomeCriador);
 
             if (postagens.Count < 1) return NoContent();
 
@@ -52,27 +53,29 @@ namespace BlogPessoal.src.controladores
         }
 
         [HttpPost]
-        public IActionResult NovaPostagem([FromBody] NovaPostagemDTO postagem)
+        public async Task<ActionResult> NovaPostagemAsync([FromBody] NovaPostagemDTO postagem)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repositorio.NovaPostagem(postagem);
+            await _repositorio.NovaPostagemAsync(postagem);
+           
             return Created($"api/Postagens", postagem);
         }
 
         [HttpPut]
-        public IActionResult AtualizarPostagem([FromBody] AtualizarPostagemDTO postagem)
+        public async Task<ActionResult> AtualizarPostagemAsync([FromBody] AtualizarPostagemDTO postagem)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repositorio.AtualizarPostagem(postagem);
+            await _repositorio.AtualizarPostagemAsync(postagem);
+            
             return Ok(postagem);
         }
 
         [HttpDelete]
-        public IActionResult DeletarPostagem([FromRoute] int idPostagem)
+        public async Task<ActionResult> DeletarPostagem([FromRoute] int idPostagem)
         {
-            _repositorio.DeletarPostagem(idPostagem);
+            await _repositorio.DeletarPostagemAsync(idPostagem);
             return NoContent();
         }
 
