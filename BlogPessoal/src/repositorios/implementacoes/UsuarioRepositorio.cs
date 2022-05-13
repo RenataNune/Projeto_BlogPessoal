@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BlogPessoal.src.data;
 using BlogPessoal.src.dtos;
 using BlogPessoal.src.modelos;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogPessoal.src.repositorios.implementacoes
 {
@@ -25,25 +27,26 @@ namespace BlogPessoal.src.repositorios.implementacoes
 
         #region Metodos
 
-        public void AtualizarUsuario(AtualizarUsuarioDTO usuario)
+        public async Task AtualizarUsuarioAsync(AtualizarUsuarioDTO usuario)
         {
-            var usuarioExistente = PegarUsuarioPeloId(usuario.Id);
+            var usuarioExistente = PegarUsuarioPeloIdAsync(usuario.Id);
             usuarioExistente.Nome = usuario.Nome;
             usuarioExistente.Senha = usuario.Senha;
             usuarioExistente.Foto = usuario.Foto;
             _contexto.Usuarios.Update(usuarioExistente);
-            _contexto.SaveChanges();
+            await _contexto.SaveChangesAsync();
         }
 
-        public void DeletarUsuario(int id)
+        public async Task DeletarUsuarioAsync(int id)
         {
-            _contexto.Usuarios.Remove(PegarUsuarioPeloId(id));
-            _contexto.SaveChanges();
+            _contexto.Usuarios.Remove(PegarUsuarioPeloIdAsync(id));
+            await _contexto.SaveChangesAsync();
         }
 
-        public void NovoUsuario(NovoUsuarioDTO usuario)
+        public async Task NovoUsuarioAsync(NovoUsuarioDTO usuario)
         {
-            _contexto.Usuarios.Add(new UsuarioModelo
+           await _contexto.Usuarios.AddAsync(
+                new UsuarioModelo
             {
                 Nome = usuario.Nome,
                 Email = usuario.Email,
@@ -54,21 +57,21 @@ namespace BlogPessoal.src.repositorios.implementacoes
             _contexto.SaveChanges();
         }
 
-        public UsuarioModelo PegarUsuarioPeloEmail(string email)
+        public async Task<UsuarioModelo> PegarUsuarioPeloEmailAsync(string email)
         {
-            return _contexto.Usuarios.FirstOrDefault(u => u.Email == email);
+            return await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public UsuarioModelo PegarUsuarioPeloId(int id)
+        public async Task<UsuarioModelo> PegarUsuarioPeloIdAsync(int id)
         {
-            return _contexto.Usuarios.FirstOrDefault(u => u.Id == id);
+            return await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public List<UsuarioModelo> PegarUsuariosPeloNome(string nome)
+        public async Task<UsuarioModelo> PegarUsuariosPeloNomeAsync(string nome)
         {
-            return _contexto.Usuarios
+            return await _contexto.Usuarios
                 .Where(u => u.Nome.Contains(nome))
-                .ToList();
+                .ToListAsync();
         }
         #endregion Metodos
     }
