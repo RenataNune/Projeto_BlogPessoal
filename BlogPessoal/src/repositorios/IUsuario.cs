@@ -16,8 +16,8 @@ namespace BlogPessoal.src.repositorios
         Task NovoUsuarioAsync(NovoUsuarioDTO usuario);
         Task AtualizarUsuarioAsync(AtualizarUsuarioDTO usuario);
         Task DeletarUsuarioAsync(int id);
-        Task <UsuarioModelo> PegarUsuarioPeloIdAsync(int id);
-        Task <UsuarioModelo> PegarUsuarioPeloEmailAsync(string email);
-        Task <List<UsuarioModelo>> PegarUsuariosPeloNomeAsync(string nome);
+        Task<UsuarioModelo> PegarUsuarioPeloIdAsync(int id);
+        Task<UsuarioModelo> PegarUsuarioPeloEmailAsync(string email);
+        Task<List<UsuarioModelo>> PegarUsuariosPeloNomeAsync(string nome);
     }
 }

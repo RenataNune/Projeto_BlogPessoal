@@ -25,7 +25,7 @@ namespace BlogPessoal.src.repositorios.implementacoes
 
         #endregion Construtores
 
-        #region Metodos
+        #region Métodos
 
         public async Task AtualizarTemaAsync(AtualizarTemaDTO tema)
         {
@@ -43,8 +43,7 @@ namespace BlogPessoal.src.repositorios.implementacoes
 
         public async Task NovoTemaAsync(NovoTemaDTO tema)
         {
-           await _contexto.Temas.AddAsync(
-                new TemaModelo
+           await _contexto.Temas.AddAsync(new TemaModelo
             {
                 Descricao = tema.Descricao
             });

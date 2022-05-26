@@ -43,7 +43,7 @@ namespace BlogPessoal.src.repositorios.implementacoes
 
         public async Task DeletarPostagemAsync(int id)
         {
-            _contexto.Postagens.Remove(PegarPostagemPeloIdAsync(id));
+            _contexto.Postagens.Remove(await PegarPostagemPeloIdAsync(id));
             await _contexto.SaveChangesAsync();
         }
 
@@ -58,15 +58,12 @@ namespace BlogPessoal.src.repositorios.implementacoes
                 Criador = _contexto.Usuarios.FirstOrDefault(u => u.Email == postagem.EmailCriador),
                 Tema = _contexto.Temas.FirstOrDefault(t => t.Descricao == postagem.DescricaoTema)
             });
-           await _contexto.SaveChangesAsync();
+            _contexto.SaveChanges();
         }
 
         public async Task<PostagemModelo> PegarPostagemPeloIdAsync(int id)
         {
-            return _contexto.Postagens
-                .Include(p => p.Criador)
-                .Include(p => p.Tema)
-                .FirstOrDefault(p => p.Id == id);
+            return await _contexto.Postagens.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<PostagemModelo>> PegarPostagensPorPesquisaAsync(

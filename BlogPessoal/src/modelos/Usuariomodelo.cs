@@ -17,17 +17,15 @@ namespace BlogPessoal.src.modelos
         public string Nome { get; set; }
 
         [Required, StringLength(30)]
-     
         public string Email { get; set; }
-
+        
         [Required, StringLength(30)]
         public string Senha { get; set; }
-
+       
         public string Foto { get; set; }
         
         [Required]
-        public TipoUsuario Tipo { get; set; }
-
+        public TipoUsuario Tipo { get; set; } 
 
         [JsonIgnore, InverseProperty("Criador")]
         public List<PostagemModelo> MinhasPostagens { get; set; }

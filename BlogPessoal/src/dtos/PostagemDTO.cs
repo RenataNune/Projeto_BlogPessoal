@@ -58,8 +58,9 @@ namespace BlogPessoal.src.dtos
         [Required]
         public string DescricaoTema { get; set; }
 
-        public AtualizarPostagemDTO(string titulo, string descricao, string foto, string descricaoTema)
-        {
+        public AtualizarPostagemDTO(int id, string titulo, string descricao, string foto, string descricaoTema)
+        { 
+            Id = id;
             Titulo = titulo;
             Descricao = descricao;
             Foto = foto;

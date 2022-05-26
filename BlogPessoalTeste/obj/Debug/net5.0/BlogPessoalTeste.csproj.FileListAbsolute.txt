@@ -109,8 +109,6 @@ C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\BlogPessoal.runtimeconfig.dev.json
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\appsettings.json
-C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\BlogPessoalTeste\obj\BlogPessoalTeste.csproj.nuget.dgspec.json
-C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\BlogPessoalTeste\obj\project.assets.json
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\BlogPessoal.exe
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\BlogPessoalTeste.deps.json
@@ -237,3 +235,8 @@ C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\obj\Debug\net5.
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\obj\Debug\net5.0\BlogPessoalTeste.pdb
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\obj\Debug\net5.0\BlogPessoalTeste.genruntimeconfig.cache
 C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\obj\Debug\net5.0\ref\BlogPessoalTeste.dll
+C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\User\Desktop\BlogPessoalVS\BlogPessoal\BlogPessoalTeste\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -25,11 +25,11 @@ namespace BlogPessoal.src.repositorios.implementacoes
 
         #endregion Construtores
 
-        #region Metodos
+        #region Métodos
 
         public async Task AtualizarUsuarioAsync(AtualizarUsuarioDTO usuario)
         {
-            var usuarioExistente = PegarUsuarioPeloIdAsync(usuario.Id);
+            var usuarioExistente = await PegarUsuarioPeloIdAsync(usuario.Id);
             usuarioExistente.Nome = usuario.Nome;
             usuarioExistente.Senha = usuario.Senha;
             usuarioExistente.Foto = usuario.Foto;
@@ -39,7 +39,7 @@ namespace BlogPessoal.src.repositorios.implementacoes
 
         public async Task DeletarUsuarioAsync(int id)
         {
-            _contexto.Usuarios.Remove(PegarUsuarioPeloIdAsync(id));
+            _contexto.Usuarios.Remove(await PegarUsuarioPeloIdAsync(id));
             await _contexto.SaveChangesAsync();
         }
 
@@ -67,12 +67,12 @@ namespace BlogPessoal.src.repositorios.implementacoes
             return await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<UsuarioModelo> PegarUsuariosPeloNomeAsync(string nome)
+        public async Task<List<UsuarioModelo>> PegarUsuariosPeloNomeAsync(string nome)
         {
             return await _contexto.Usuarios
                 .Where(u => u.Nome.Contains(nome))
                 .ToListAsync();
         }
-        #endregion Metodos
+        #endregion Métodos
     }
 }
